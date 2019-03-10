@@ -8,7 +8,10 @@ import com.workshop.aroundme.R
 import com.workshop.aroundme.data.model.ParentCategoryEntity
 import java.util.*
 
-class CategoryAdapter(private val items: List<ParentCategoryEntity>) : RecyclerView.Adapter<CategoryViewHolder>() {
+class CategoryAdapter(
+    private val items: List<ParentCategoryEntity>
+) :
+    RecyclerView.Adapter<CategoryViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_category_fragment, parent, false)
         return CategoryViewHolder(view)

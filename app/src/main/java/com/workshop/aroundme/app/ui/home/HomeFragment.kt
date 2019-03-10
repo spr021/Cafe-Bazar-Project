@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -47,7 +46,7 @@ class HomeFragment : Fragment(), OnHomePlaceItemClickListener {
             adapter = ModernHomeAdapter(list ?: listOf(), this)
             recyclerView?.adapter = adapter
 
-            val categoryRepository = Injector.provideCategoryRepository()
+            val categoryRepository = Injector.provideCategoryRepository(requireContext())
             categoryRepository.getCategories(::onCategoriesReady)
         }
     }

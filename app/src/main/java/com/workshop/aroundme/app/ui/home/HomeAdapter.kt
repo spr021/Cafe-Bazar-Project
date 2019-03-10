@@ -20,6 +20,7 @@ class HomeAdapter(
     override fun getItemCount() = items.size
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
+
         holder.bind(items[position], onHomePlaceItemClickListener)
     }
 

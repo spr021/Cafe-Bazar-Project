@@ -21,7 +21,7 @@ object Injector {
         return Room.databaseBuilder(context, AppDatabase::class.java, "db.data").build()
     }
 
-    fun provideCategoryRepository(): CategoryRepository {
+    fun provideCategoryRepository(requireContext: Context): CategoryRepository {
         return CategoryRepository(CategoryRemoteDataSource(CategoryService(NetworkManager())))
     }
 

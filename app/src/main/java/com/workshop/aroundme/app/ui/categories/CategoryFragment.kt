@@ -10,11 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.workshop.aroundme.app.Injector
 import com.workshop.aroundme.R
 import com.workshop.aroundme.data.model.ParentCategoryEntity
-import kotlinx.android.synthetic.main.fragment_list.*
-import kotlin.concurrent.thread
 
 class CategoryFragment : Fragment () {
-    var adapter : CategoryAdapter? = null
+    private var adapter : CategoryAdapter? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_list, container, false)
     }
@@ -29,16 +27,16 @@ class CategoryFragment : Fragment () {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val categoryRepository = Injector.provideCategoryRepository()
-        categoryRepository.getCategories { :: onCategoriesReady }
+        val categoryRepository = Injector.provideCategoryRepository(requireContext())
+        categoryRepository.getCategories {::onCategoriesReady}
     }
 
 
-    private fun onCategoriesReady(list: List<ParentCategoryEntity>) {
+    private fun onCategoriesReady(list: List<ParentCategoryEntity>?) {
         activity?.runOnUiThread {
             println(list)
             val recyclerView = view?.findViewById<RecyclerView>(R.id.recyclerView)
-            adapter = CategoryAdapter(list)
+            adapter = CategoryAdapter(list ?: listOf() )
             recyclerView?.adapter = adapter
         }
     }
