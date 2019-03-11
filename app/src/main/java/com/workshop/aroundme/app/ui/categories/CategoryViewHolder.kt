@@ -12,5 +12,6 @@ class CategoryViewHolder(itemView :View):RecyclerView.ViewHolder(itemView) {
         parentCategoryEntity: ParentCategoryEntity
     ){
         nameTextView.text = parentCategoryEntity.name
+
     }
 }
